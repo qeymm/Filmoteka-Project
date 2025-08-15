@@ -3,14 +3,11 @@ import './sass/main.scss';
 
 // Scripts
 import './js/header';
-import './js/search';
-import './js/filter';
-import './js/render-movie-cards';
-import './js/slider';
 import './js/movie-modal';
-import './js/pagination';
 // team modal removed
+import './js/watched';
+import './js/queue';
 import './js/scroll-up';
-import './js/theme-switch';
 import './js/firebase/firebase';
-import './js/trailer';
+import './js/infinity-scroll';
+import './js/theme-switch';

@@ -2,6 +2,11 @@
 
 This project was created with Parcel. For familiarization and setting additional features [refer to documentation](https://parceljs.org/).
 
+Before running, replace the placeholders:
+
+- TMDB API key in `src/js/api/api-vars.js`
+- Firebase config in `src/js/firebase/firebaseAuth.js`
+
 ## Preparing a new project
 
 1. Make sure you have an LTS version of Node.js installed on your computer.

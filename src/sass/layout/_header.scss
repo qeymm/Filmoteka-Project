@@ -1,0 +1,529 @@
+body.header-menu-open {
+  @media screen and (max-width: 767px) {
+    overflow: hidden;
+    position: relative;
+  }
+}
+
+.header {
+  height: 230px;
+  background-color: $logo-color;
+  position: relative;
+}
+
+.header--home,
+.header--library {
+  padding-top: 46px;
+}
+.header--home {
+  background: url('../images/header-img/header-home-mob-1.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  @media (min-device-pixel-ratio: 2),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background: url('../images/header-img/header-home-mob-2.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  @include media-min($tab) {
+    background: url('../images/header-img/header-home-tab-1.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  @include media-2-min($tab) {
+    background: url('../images/header-img/header-home-tab-2.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  @include media-min($desk) {
+    background: url('../images/header-img/header-home-desk-1.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  @include media-2-min($desk) {
+    background: url('../images/header-img/header-home-desk-2.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+}
+
+.header--library {
+  background-color: rgba(0, 0, 0, 0.56);
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.56),
+      rgba(0, 0, 0, 0.56)
+    ),
+    url('../images/header-img/header-lib-mob-1.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  @media (min-device-pixel-ratio: 2),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url('../images/header-img/header-lib-mob-2.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  @include media-min($tab) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url('../images/header-img/header-lib-tab-1.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  @include media-2-min($tab) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url('../images/header-img/header-lib-tab-2.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  @include media-min($desk) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url('../images/header-img/header-lib-desk-1.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.56);
+  }
+
+  @include media-2-min($desk) {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url('../images/header-img/header-lib-desk-2.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+}
+
+.header__container {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @include media-min($mob) {
+    width: $mob;
+  }
+
+  @include media-min($tab) {
+    width: $tab;
+  }
+
+  @include media-min($desk) {
+    width: $desk;
+  }
+}
+
+.header__section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__nav {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.header__nav-list {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    list-style: none;
+  }
+}
+
+.header__nav-item {
+  position: relative;
+
+  &:not(:last-child) {
+    margin-right: 15px;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -2px;
+    right: 0;
+    width: 0%;
+    height: 3px;
+    border-radius: 100px;
+    background-color: $accent-color;
+    transition: all 500ms $cubic;
+  }
+
+  &:hover::after,
+  &:focus::after {
+    width: 100%;
+    left: 0;
+  }
+
+  &--active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 3px;
+    background-color: $accent-color;
+    transition: all 500ms $cubic;
+  }
+}
+
+.button_container {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.header__logo {
+  align-items: center;
+  display: flex;
+  color: white;
+
+  transition: color $trans-time ease-in;
+
+  &-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 12px;
+    fill: currentColor;
+
+    @include media-min($tab) {
+      margin-right: 10px;
+    }
+  }
+
+  &-name {
+    font-size: 35px;
+    font-weight: 500;
+    color: currentColor;
+
+    @include media-max($mob-max-width) {
+      display: none;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    color: $accent-color;
+  }
+}
+
+.header__nav-btn {
+  background-color: transparent;
+  border: none;
+  margin: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-top: 7px;
+  padding-bottom: 5px;
+  line-height: 1.17;
+  text-transform: uppercase;
+  color: $secondary-text-color;
+  cursor: pointer;
+  font-size: large;
+  font-weight: 500;
+
+  transition: color $trans-time cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    color: $accent-color;
+  }
+}
+
+.header__filmsearch {
+  margin-top: 37px;
+  display: flex;
+  justify-content: center;
+}
+
+.header__form {
+  position: relative;
+  margin: 0 auto;
+  color: white;
+
+  &-input {
+    background-color: transparent;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 0.5px solid $secondary-text-color;
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 20px;
+    padding-bottom: 4px;
+    color: white;
+    outline: none;
+    transition: color $trans-time $cubic;
+
+    &:hover,
+    &:focus {
+      border-bottom: 0.5px solid $accent-color;
+      color: $accent-color;
+
+      &::placeholder {
+        color: currentColor;
+      }
+    }
+
+    @media screen and (max-width: 767px) {
+      max-width: 220px;
+    }
+
+    width: 336px;
+
+    &::placeholder {
+      font-weight: 400px;
+      font-size: 18px;
+      line-height: 1.14;
+      color: currentColor;
+    }
+  }
+
+  &-input-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border: none;
+    background-color: inherit;
+    padding: 0px;
+    cursor: pointer;
+    color: white;
+    transition: color $trans-time cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover,
+    &:focus {
+      color: $accent-color;
+    }
+  }
+
+  &-input-icon {
+    fill: currentColor;
+  }
+}
+
+.library-btn-list {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+
+  margin-top: 45px;
+}
+
+.library-btn-list__item:first-child {
+  margin-right: 20px;
+
+  @media screen and (min-width: $tab) {
+    margin-right: 32px;
+  }
+}
+
+.library__item-btn {
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  width: 130px;
+  height: 44px;
+  cursor: pointer;
+
+  @include media-min($tab) {
+    width: 136px;
+  }
+  border: 1px solid $secondary-text-color;
+  color: $secondary-text-color;
+  background-color: transparent;
+  align-content: center;
+  box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.6);
+  transition: box-shadow $trans-time $cubic, background-color $trans-time $cubic,
+    border $trans-time $cubic;
+
+  &:hover,
+  &:focus,
+  &--active {
+    background-color: $accent-color;
+    border: $accent-color;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, 0 15px 43px rgb(255 107 1 / 70%),
+      rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  }
+}
+
+.header-mob-menu-open-btn {
+  position: absolute;
+  top: 3px;
+  right: 10px;
+
+  z-index: 998;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  fill: currentColor;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    fill: $accent-color;
+  }
+
+  @include media-min($tab) {
+    display: none;
+  }
+}
+
+.header-mob-menu {
+  display: block;
+  position: fixed;
+  z-index: 1002;
+  font-size: larger;
+  font-weight: 600;
+  box-shadow: 0px 1px 58px 5px rgba(255, 85, 0, 0.7) inset;
+  background-color: black;
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.56),
+      rgba(0, 0, 0, 0.56)
+    ),
+    url(../images/mob-menu-background.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  // background-image: url(../images/giphy.gif);
+  opacity: 1;
+
+  background-size: cover;
+  color: transparent;
+
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding-top: 48px;
+  padding-bottom: 48px;
+  padding-left: 40px;
+  padding-right: 40px;
+  font-style: normal;
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+.menu-btn__icon {
+  display: block;
+
+  color: white;
+  fill: currentColor;
+  transition: color 300ms ease-in;
+
+  &:hover,
+  &:focus {
+    color: $accent-color;
+  }
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+.mob-menu-container {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  margin: 0 auto;
+}
+
+.header-mob-menu-close-btn {
+  position: absolute;
+  top: -3px;
+  right: -10px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  fill: currentColor;
+
+  &:hover,
+  &:focus {
+    fill: $accent-color;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .mob-menu-list {
+    display: none;
+  }
+}
+
+.mob-menu__item:not(:last-child) {
+  margin-bottom: 32px;
+}
+
+.mob-menu__link {
+  font-size: 40px;
+  line-height: 47px;
+  letter-spacing: 0.02em;
+  color: #f5ebeb;
+
+  &--current {
+    color: $accent-color;
+  }
+
+  &:hover,
+  &:focus {
+    color: $accent-color;
+  }
+}

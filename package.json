@@ -2,29 +2,43 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://goitacademy.github.io/parcel-project-template",
+  "homepage": "https://goitacademy.github.io/Filmoteka-project",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /parcel-project-template/"
+    "build": "parcel build src/*.html --public-url /Filmoteka-project/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/goitacademy/parcel-project-template.git"
+    "url": "git+https://github.com/goitacademy/Filmoteka-project.git"
   },
   "keywords": [],
-  "author": "Alexander Repeta <alexander.repeta@gmail.com>",
+  "author": "Kim Enorme <kimenorme15@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/goitacademy/parcel-project-template/issues"
   },
   "dependencies": {
-    "modern-normalize": "^1.1.0"
+    "@glidejs/glide": "^3.7.1",
+    "animate.css": "^4.1.1",
+    "axios": "^1.10.0",
+    "basiclightbox": "^5.0.4",
+    "canvas-confetti": "^1.9.3",
+    "copy-webpack-plugin": "^13.0.0",
+    "core-js": "^3.44.0",
+    "firebase": "^12.1.0",
+    "handlebars": "^4.7.8",
+    "modern-normalize": "^3.0.1",
+    "nprogress": "^0.2.0",
+    "sweetalert2": "^11.22.2",
+    "vanilla-back-to-top": "^7.2.1"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",
+    "buffer": "^6.0.3",
     "parcel": "^2.6.0",
     "parcel-reporter-clean-dist": "^1.0.4",
-    "posthtml-include": "^1.7.4"
+    "posthtml-include": "^1.7.4",
+    "process": "^0.11.10"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead"
 }

@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Filmoteka</title>
-
+    <title>My library</title>
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,26 +17,20 @@
       sizes="32x32"
       href="./images/film-icon.svg"
     />
-    <!-- <link rel="stylesheet" href="./sass/animate.min.css">
-      <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  /> -->
   </head>
   <body>
-    <!-- <div id="auth-header" class="fbs-header"></div> -->
     <!-- <include src="./partials/_firebase.html"></include> -->
     <!-- Header section -->
-    <include src="./partials/_header.html"></include>
+    <include src="./partials/_library-header.html"></include>
 
     <!-- Main section -->
-    <include src="./partials/_movie-grid.html"></include>
+    <include src="./partials/_library-main.html"></include>
 
     <!-- Loader -->
     <include src="./partials/_loader.html"></include>
 
     <!-- Pagination section -->
-    <include src="./partials/_pagination-wrap.html"></include>
+    <!-- <include src="./partials/_pagination-wrap.html"></include> -->
 
     <!-- Footer section -->
     <include src="./partials/_footer.html"></include>
@@ -45,17 +38,18 @@
     <!-- Movie modal -->
     <include src="./partials/_movie-modal.html"></include>
 
-    <!-- Auth modal -->
-    <include src="./partials/_firebase-modal.html"></include>
-    <!-- <div id="auth-header" style="display: none"></div>
-    <div id="auth-modal" style="display: none"></div> -->
+    <!-- Team modal removed -->
+
     <!-- Scroll up -->
     <include src="./partials/_scroll-up.html"></include>
+
+    <!-- Auth modal -->
+    <include src="./partials/_firebase-modal.html"></include>
 
     <!-- Scroll anchor -->
     <div class="scroll-guard"></div>
 
     <!-- JS -->
-    <script src="./index.js" type="module"></script>
+    <script src="./my-library.js" type="module"></script>
   </body>
 </html>
