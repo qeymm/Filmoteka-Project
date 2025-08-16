@@ -3,6 +3,7 @@ import { createNote } from './firebase/firebaseAuth.js';
 import { BASE_IMG_URL } from './api/api-vars.js';
 import { localstorage } from './localstorage.js';
 import { movieObject } from './movie-modal';
+import { requireLogin } from './firebase/authUtils.js';
 import {
   startPaginationObserver,
   stopPaginationObserver,
@@ -27,9 +28,8 @@ if (libraryQueueBtn) {
   libraryQueueBtn.classList.add('library__item-btn--active');
 }
 
-// Add to Queue button logic
-
-export async function onBtnQueueClick() {
+// Add to Queue button logic - wrapped with authentication check
+export const onBtnQueueClick = requireLogin(async function() {
   if (localStorage.getItem('queue') === null) {
     localStorage.setItem('queue', '[]');
   }
@@ -46,15 +46,16 @@ export async function onBtnQueueClick() {
     checkCurrentPageAndRewrite(libraryQueueBtn, -1);
   }
 
-  // auth
+  // Sync with Firebase database
   const currentUser = getAuth().currentUser;
-
   if (currentUser !== null) {
     const queue = localStorage.getItem('queue') || [];
     const watched = localStorage.getItem('watched') || [];
     createNote(currentUser, queue, watched);
   }
-}
+  
+  return true;
+}, 'add movies to queue');
 
 // Library Queue button logic
 

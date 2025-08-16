@@ -9,8 +9,8 @@ import './js/render-movie-cards';
 import './js/slider';
 import './js/movie-modal';
 import './js/pagination';
-// team modal removed
 import './js/scroll-up';
 import './js/theme-switch';
 import './js/firebase/firebase';
 import './js/trailer';
+import './js/developer-modal';

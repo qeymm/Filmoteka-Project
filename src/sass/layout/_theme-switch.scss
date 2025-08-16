@@ -52,7 +52,26 @@ footer.light-theme {
 }
 
 body.dark-theme {
-  background: url(../images/stars-sky.jpg) 50% 50%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(156, 156, 156, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(51, 51, 51, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(156, 156, 156, 0.05) 0%, transparent 50%),
+    linear-gradient(135deg, #333333 0%, #4a4a4a 25%, #5a5a5a 50%, #6b6b6b 75%, #9c9c9c 100%);
+  background-attachment: fixed;
+  background-size: 400% 400%;
+  animation: darkThemeGradient 20s ease infinite;
+}
+
+@keyframes darkThemeGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 body.dark-theme,

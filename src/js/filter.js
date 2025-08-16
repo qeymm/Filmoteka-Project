@@ -3,7 +3,6 @@ import { getMovies } from './api/fetch-movie';
 import { API_KEY, BASE_URL } from './api/api-vars';
 import { paginationWrapRef } from './pagination';
 import { startLoader, stopLoader } from './loader';
-import { adRandomizer } from './render-movie-cards';
 import { showSlider } from './slider';
 
 const refs = {
@@ -83,7 +82,6 @@ export function renderMovies(url) {
   getMovies(url).then(response => {
     if (response && response.results) {
       renderMovieCards(response.results);
-      adRandomizer();
     }
   }).catch(error => {
     console.error('Error rendering movies:', error);

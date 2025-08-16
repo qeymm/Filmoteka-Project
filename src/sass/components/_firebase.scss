@@ -324,6 +324,7 @@ body {
   @include font(600, 16px, 18px, 0.02em);
   color: #ffffff;
   margin-bottom: 12px;
+  margin-top: 35px;
   margin-left: 0;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -379,8 +380,9 @@ body {
 }
 
 .fbs-modal-label__block--input {
-  height: 56px;
+  height: 70px;
   padding-left: 50px;
+  margin: 10px;
 }
 
 .fbs-modal-icon {
@@ -643,5 +645,78 @@ body {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+// Login required notification styles
+.login-required-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  color: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4);
+  z-index: 10000;
+  transform: translateX(400px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  max-width: 320px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  &.show {
+    transform: translateX(0);
+  }
+  
+  .notification-content {
+    text-align: center;
+    
+    p {
+      margin: 0 0 15px 0;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+  }
+  
+  .notification-login-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    
+    &:hover,
+    &:focus {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+// Responsive adjustments for mobile
+@media screen and (max-width: 767px) {
+  .login-required-notification {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+    transform: translateY(-100px);
+    
+    &.show {
+      transform: translateY(0);
+    }
   }
 }

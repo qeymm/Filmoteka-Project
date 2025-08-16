@@ -2,6 +2,7 @@ import { getAuth } from 'firebase/auth';
 import { createNote } from './firebase/firebaseAuth.js';
 import { localstorage } from './localstorage.js';
 import { movieObject } from './movie-modal';
+import { requireLogin } from './firebase/authUtils.js';
 import {
   startPaginationObserver,
   stopPaginationObserver,
@@ -25,9 +26,8 @@ const libraryQueueBtn = document.querySelector('button[data-action="queue"]');
 let watchedMovieId = localStorage.getItem('watched');
 let parseWatchedMovieId = JSON.parse(watchedMovieId);
 
-// Add to Watched button logic
-
-export function onAddToWatchedBtnClick() {
+// Add to Watched button logic - wrapped with authentication check
+export const onAddToWatchedBtnClick = requireLogin(async function() {
   if (localStorage.getItem('watched') === null) {
     localStorage.setItem('watched', '[]');
   }
@@ -44,14 +44,16 @@ export function onAddToWatchedBtnClick() {
     checkCurrentPageAndRewrite(libraryWatchedBtn, -1);
   }
 
-  // auth
+  // Sync with Firebase database
   const currentUser = getAuth().currentUser;
   if (currentUser !== null) {
     const queue = localStorage.getItem('queue') || [];
     const watched = localStorage.getItem('watched') || [];
     createNote(currentUser, queue, watched);
   }
-}
+  
+  return true;
+}, 'add movies to watched list');
 
 // Library Watched button logic
 

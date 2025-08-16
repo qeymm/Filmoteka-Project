@@ -90,6 +90,31 @@ body {
   &:focus {
     color: #ff6b08;
   }
+  
+  &.developer-link {
+    position: relative;
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: rgba(255, 107, 8, 0.1);
+    border: 1px solid transparent;
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    
+    &:hover,
+    &:focus {
+      background: rgba(255, 107, 8, 0.2);
+      border-color: rgba(255, 107, 8, 0.3);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(255, 107, 8, 0.2);
+    }
+    
+    &::after {
+      content: '👨‍💻';
+      margin-left: 6px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -162,4 +187,320 @@ body {
 .social__icon,
 .app__icon {
   fill: currentColor;
+}
+
+// Developer Modal Styles
+.developer-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 10000;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  
+  &.show {
+    display: flex;
+    opacity: 1;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.developer-modal {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 20px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+  
+  .show & {
+    transform: scale(1);
+  }
+  
+  // Mobile styles
+  width: 95vw;
+  padding: 20px;
+  
+  // Tablet styles
+  @media screen and (min-width: 768px) {
+    width: 80vw;
+    max-width: 600px;
+    padding: 30px;
+  }
+  
+  // Desktop styles
+  @media screen and (min-width: 1280px) {
+    width: 70vw;
+    max-width: 800px;
+    padding: 40px;
+  }
+}
+
+.developer-modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #666;
+  transition: all 0.2s ease;
+  z-index: 1;
+  
+  &:hover,
+  &:focus {
+    background: rgba(255, 107, 8, 0.2);
+    color: #ff6b08;
+    transform: scale(1.1);
+  }
+  
+  @media screen and (min-width: 768px) {
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.developer-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: 30px;
+    align-items: flex-start;
+  }
+  
+  @media screen and (min-width: 1280px) {
+    gap: 40px;
+  }
+}
+
+.developer-image-container {
+  flex-shrink: 0;
+  text-align: center;
+  
+  @media screen and (min-width: 768px) {
+    width: 200px;
+  }
+  
+  @media screen and (min-width: 1280px) {
+    width: 250px;
+  }
+}
+
+.developer-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ff6b08;
+  box-shadow: 0 8px 25px rgba(255, 107, 8, 0.3);
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+  
+  @media screen and (min-width: 768px) {
+    width: 180px;
+    height: 180px;
+  }
+  
+  @media screen and (min-width: 1280px) {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+.developer-info {
+  flex: 1;
+  text-align: center;
+  
+  @media screen and (min-width: 768px) {
+    text-align: left;
+  }
+}
+
+.developer-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 8px 0;
+  background: linear-gradient(135deg, #ff6b08, #f7931e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  @media screen and (min-width: 768px) {
+    font-size: 28px;
+  }
+  
+  @media screen and (min-width: 1280px) {
+    font-size: 32px;
+  }
+}
+
+.developer-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #666;
+  margin: 0 0 15px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+  }
+}
+
+.developer-description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555;
+  margin: 0 0 20px 0;
+  
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.developer-skills,
+.developer-contact {
+  margin-bottom: 20px;
+  
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 12px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    
+    @media screen and (min-width: 768px) {
+      font-size: 18px;
+    }
+  }
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  
+  @media screen and (min-width: 768px) {
+    justify-content: flex-start;
+  }
+}
+
+.skill-tag {
+  background: linear-gradient(135deg, #ff6b08, #f7931e);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(255, 107, 8, 0.3);
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+  
+  @media screen and (min-width: 768px) {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  
+  @media screen and (min-width: 768px) {
+    align-items: flex-start;
+  }
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  
+  svg {
+    color: #ff6b08;
+  }
+  
+  &:hover,
+  &:focus {
+    color: #ff6b08;
+    transform: translateX(5px);
+  }
+  
+  @media screen and (min-width: 768px) {
+    font-size: 15px;
+  }
+}
+
+// Dark theme support
+body.dark-theme {
+  .developer-modal {
+    background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .developer-name {
+    background: linear-gradient(135deg, #ff6b08, #f7931e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .developer-title {
+    color: #ccc;
+  }
+  
+  .developer-description {
+    color: #bbb;
+  }
+  
+  .developer-skills h3,
+  .developer-contact h3 {
+    color: #fff;
+  }
+  
+  .contact-link {
+    color: #ccc;
+    
+    &:hover,
+    &:focus {
+      color: #ff6b08;
+    }
+  }
 }

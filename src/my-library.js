@@ -4,7 +4,6 @@ import './sass/main.scss';
 // Scripts
 import './js/header';
 import './js/movie-modal';
-// team modal removed
 import './js/watched';
 import './js/queue';
 import './js/scroll-up';
