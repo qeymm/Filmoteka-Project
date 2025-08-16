@@ -19,11 +19,9 @@ startLoader();
       renderPagination(trendMoviesList.page, trendMoviesList.total_pages);
     } else {
       console.warn('No movie data received from API');
-      // Show a fallback message or placeholder
     }
   } catch (error) {
     console.error('Error loading trending movies:', error);
-    // Show a fallback message or placeholder
   } finally {
     stopLoader();
   }
