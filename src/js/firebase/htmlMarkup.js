@@ -12,6 +12,13 @@ export const logregMarkup = `<div id="login-status" class="login-status">
 export const loggedMarkup = `<div id="login-status" class="login-status">
         <span id="logged-user"></span>
         <button id="logout"  type="button" class="fbs__nav-btn">logout</button>
+        
+        <!-- Logout Success Message -->
+        <div id="logout-success" class="fbs-success-message">
+          <div class="fbs-success-icon">👋</div>
+          <h3 class="fbs-success-text">Successfully Logged Out!</h3>
+          <p class="fbs-success-subtext">Come back soon!</p>
+        </div>
       </div>`;
 
 export const loginMarkup = `<div id="user-login" class="backdrop fbs-backdrop">
@@ -55,6 +62,13 @@ export const loginMarkup = `<div id="user-login" class="backdrop fbs-backdrop">
           <a class="visually-hidden fbs-forgot" href="#">Forgot Password?</a>
         </form>
 
+        <!-- Success Message -->
+        <div id="login-success" class="fbs-success-message">
+          <div class="fbs-success-icon">✓</div>
+          <h3 class="fbs-success-text">Successfully Logged In!</h3>
+          <p class="fbs-success-subtext">Welcome back! Redirecting you now...</p>
+        </div>
+
         </div>
       </div>`;
 
@@ -97,6 +111,14 @@ export const registerMarkup = `<div id="user-register" class="backdrop fbs-backd
           <p id="login-error"></p>
           </div>
                   </form>
+
+                  <!-- Success Message -->
+                  <div id="register-success" class="fbs-success-message">
+                    <div class="fbs-success-icon">✓</div>
+                    <h3 class="fbs-success-text">Account Created Successfully!</h3>
+                    <p class="fbs-success-subtext">Welcome to Filmoteka! Redirecting you now...</p>
+                  </div>
+
                   <p class="policy-text">
   By continuing, you are indicating that you accept our
   <a

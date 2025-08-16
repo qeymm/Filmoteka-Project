@@ -28,38 +28,45 @@ async function onLoginBtn(e) {
   const password = e.target.password.value;
   const email = e.target.email.value;
   const action = e.target.fire.value;
+  
   if (action === 'log') {
     const myUser = await logUser(email, password);
 
     if (myUser.uid) {
-      cleanLoginModal();
+      // Show success message
+      showSuccessMessage('login-success');
+      
+      // Wait 2 seconds then close modal and update UI
+      setTimeout(async () => {
+        cleanLoginModal();
+        const auth = getAuth();
+        onAuthStateChanged(auth, myUser => {
+          if (myUser) {
+            // User is signed in, see docs for a list of available properties
+            // https://firebase.google.com/docs/reference/js/firebase.User
+            const uid = myUser.uid;
+            // ...
+          } else {
+            // User is signed out
+            // ...
+          }
+        });
 
-      const auth = getAuth();
-      onAuthStateChanged(auth, myUser => {
-        if (myUser) {
-          // User is signed in, see docs for a list of available properties
-          // https://firebase.google.com/docs/reference/js/firebase.User
-          const uid = myUser.uid;
-          // ...
-        } else {
-          // User is signed out
-          // ...
+        const dbNote = await readNote(myUser);
+
+        const watched = dbNote.watched;
+        const queue = dbNote.queue;
+
+        if (watched) {
+          localStorage.setItem('watched', watched);
         }
-      });
+        if (queue) {
+          localStorage.setItem('queue', queue);
+        }
 
-      const dbNote = await readNote(myUser);
+        makeLoggedHtml(myUser.email);
+      }, 2000);
 
-      const watched = dbNote.watched;
-      const queue = dbNote.queue;
-
-      if (watched) {
-        localStorage.setItem('watched', watched);
-      }
-      if (queue) {
-        localStorage.setItem('queue', queue);
-      }
-
-      makeLoggedHtml(myUser.email);
     } else {
       const loginErrorElement = document.getElementById('login-error');
       if (loginErrorElement) {
@@ -77,9 +84,16 @@ async function onLoginBtn(e) {
       const watched = localStorage.getItem('watched') || [];
 
       await createNote(createdUser, queue, watched);
-      cleanLoginModal();
+      
+      // Show success message
+      showSuccessMessage('register-success');
+      
+      // Wait 2 seconds then close modal and update UI
+      setTimeout(() => {
+        cleanLoginModal();
+        makeLoggedHtml(myUser.email);
+      }, 2000);
 
-      makeLoggedHtml(myUser.email);
     } else {
       const loginErrorElement = document.getElementById('login-error');
       if (loginErrorElement) {
@@ -94,8 +108,14 @@ async function onLoginBtn(e) {
 async function onLogoutBtn(e) {
   e.target.removeEventListener('click', onLogoutBtn);
 
-  await logOut();
-  makeLogRegHtml();
+  // Show logout success message
+  showLogoutSuccessMessage();
+  
+  // Wait 1.5 seconds then logout
+  setTimeout(async () => {
+    await logOut();
+    makeLogRegHtml();
+  }, 1500);
 }
 
 function cancelLogin(e) {
@@ -182,17 +202,65 @@ function cleanLoginModal() {
 function makeLoginModalHtml() {
   if (hrefModalHtml) {
     hrefModalHtml.innerHTML = loginMarkup;
+    // Ensure success messages are hidden
+    hideAllSuccessMessages();
   }
 }
 
 function makeRegisterModalHtml() {
   if (hrefModalHtml) {
     hrefModalHtml.innerHTML = registerMarkup;
+    // Ensure success messages are hidden
+    hideAllSuccessMessages();
   }
+}
+
+// Function to hide all success messages
+function hideAllSuccessMessages() {
+  const successMessages = document.querySelectorAll('.fbs-success-message');
+  successMessages.forEach(msg => {
+    msg.classList.remove('show');
+  });
+  
+  // Also ensure forms are visible
+  const forms = document.querySelectorAll('.fbs-modal-form');
+  forms.forEach(form => {
+    form.style.display = 'block';
+    form.classList.remove('hidden');
+  });
 }
 
 function fbsClose(e) {
   if (e.target === e.currentTarget) {
     cancelLogin();
+  }
+}
+
+// Function to show logout success message
+function showLogoutSuccessMessage() {
+  const logoutBtn = document.getElementById('logout');
+  const logoutSuccess = document.getElementById('logout-success');
+  
+  if (logoutBtn && logoutSuccess) {
+    logoutBtn.style.display = 'none';
+    logoutSuccess.classList.add('show');
+  }
+}
+
+// Function to show success message
+function showSuccessMessage(successId) {
+  const form = document.querySelector('.fbs-modal-form');
+  const successMessage = document.getElementById(successId);
+  const policyText = document.querySelector('.policy-text');
+  
+  if (form && successMessage) {
+    form.classList.add('hidden');
+    if (policyText) policyText.style.display = 'none';
+    
+    // Wait for transition to complete then show success message
+    setTimeout(() => {
+      form.style.display = 'none';
+      successMessage.classList.add('show');
+    }, 300);
   }
 }
