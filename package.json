@@ -2,14 +2,14 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://goitacademy.github.io/Filmoteka-project",
+  "homepage": "https://goitacademy.github.io/Filmoteka-Project",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /Filmoteka-project/"
+    "build": "parcel build src/*.html --public-url /Filmoteka-Project/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/goitacademy/Filmoteka-project.git"
+    "url": "git+https://github.com/goitacademy/Filmoteka-Project.git"
   },
   "keywords": [],
   "author": "Kim Enorme <kimenorme15@gmail.com>",
