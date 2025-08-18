@@ -10,9 +10,9 @@ const refs = {
 
 const { modalTrailerIfraim, modalTrailer } = refs;
 let closeTrailerBtn;
+let currentTrailerIframe = null; // Store reference to current iframe
 
 
-// get the trailer
 async function fetchForMovieTrailers(movieId) {
   const url = `${ID_URL}${movieId}${VIDEO_URL}`;
 
@@ -21,7 +21,6 @@ async function fetchForMovieTrailers(movieId) {
   return response.results;
 }
 
-// https://api.themoviedb.org/3/movie/507086/videos?api_key=820f51701c1eae13089594e954cb7930&language=en-US
 
 export async function onTreilerBtnClick(e) {
   e.preventDefault();
@@ -51,7 +50,7 @@ export async function onTreilerBtnClick(e) {
   window.addEventListener('keydown', onKeydownEscape);
 }
 
-// `<iframe src="https://www.youtube.com/embed/${e.target.dataset.video}" width="80%" height="70%" frameborder="0"></iframe>`
+
 
 const BASE_TREILER_URL = 'https://www.youtube.com/embed/';
 
@@ -80,15 +79,29 @@ function videoFrameCreate(key) {
    </iframe>
  `;
   modalTrailerIfraim.insertAdjacentHTML('beforeend', trailer);
+  
+ 
+  currentTrailerIframe = modalTrailerIfraim.querySelector('iframe');
 }
 
 function videoFrameClean() {
   if (modalTrailerIfraim) {
+  
+    if (currentTrailerIframe) {
+    
+      currentTrailerIframe.src = '';
+      currentTrailerIframe = null;
+    }
     modalTrailerIfraim.innerHTML = '';
   }
 }
 
 export function closeModalTrailer() {
+  if (currentTrailerIframe) {
+    currentTrailerIframe.src = '';
+    currentTrailerIframe = null;
+  }
+  
   addAllEventListenersModal();
   removeAllEventListenersTrailer();
   if (modalTrailer) modalTrailer.classList.add('modal-trailer--is-hidden');
@@ -98,6 +111,12 @@ function onTrailerBackdropClick(e) {
   if (!e.target.classList.contains('backdrop-video')) {
     return;
   }
+  
+  if (currentTrailerIframe) {
+    currentTrailerIframe.src = '';
+    currentTrailerIframe = null;
+  }
+  
   addAllEventListenersModal();
   removeAllEventListenersTrailer();
   if (modalTrailer) modalTrailer.classList.add('modal-trailer--is-hidden');
@@ -109,6 +128,12 @@ function onKeydownEscape(e) {
   if (e.code !== 'Escape') {
     return;
   }
+  
+  if (currentTrailerIframe) {
+    currentTrailerIframe.src = '';
+    currentTrailerIframe = null;
+  }
+  
   addAllEventListenersModal();
   removeAllEventListenersTrailer();
   modalTrailer.classList.add('modal-trailer--is-hidden');
