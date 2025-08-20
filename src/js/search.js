@@ -138,3 +138,57 @@ async function onInputText(e) {
     stopLoader();
   }
 }
+
+const suggestionsList = document.querySelector('[data-search-suggestions]');
+
+function renderSuggestions(items) {
+  if (!suggestionsList) return;
+  if (!items.length) {
+    suggestionsList.style.display = 'none';
+    suggestionsList.innerHTML = '';
+    return;
+  }
+  suggestionsList.innerHTML = items.slice(0, 5).map(item => `<li class="search-suggestion-item" data-id="${item.id}">${item.title || item.name}</li>`).join('');
+  suggestionsList.style.display = 'block';
+}
+
+async function fetchSuggestions(query) {
+  if (!query) return [];
+  try {
+    const url = `${SEARCH_URL}&query=${encodeURIComponent(query)}`;
+    const res = await fetch(url);
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.results || [];
+  } catch {
+    return [];
+  }
+}
+
+if (refs.input) {
+  refs.input.addEventListener('input', debounce(async e => {
+    const q = e.target.value.trim();
+    if (!q) return renderSuggestions([]);
+    const suggestions = await fetchSuggestions(q);
+    renderSuggestions(suggestions);
+  }, 300));
+}
+
+if (suggestionsList) {
+  suggestionsList.addEventListener('mousedown', e => {
+    const li = e.target.closest('li');
+    if (!li) return;
+    refs.input.value = li.textContent;
+    suggestionsList.style.display = 'none';
+    if (refs.form) {
+      refs.form.dispatchEvent(new Event('submit', { bubbles: true }));
+    }
+  });
+}
+
+// Hide suggestions on blur
+if (refs.input) {
+  refs.input.addEventListener('blur', () => {
+    setTimeout(() => { if (suggestionsList) suggestionsList.style.display = 'none'; }, 150);
+  });
+}
